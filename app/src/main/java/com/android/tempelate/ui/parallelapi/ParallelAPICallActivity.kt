@@ -2,9 +2,9 @@ package com.android.tempelate.ui.parallelapi
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -12,23 +12,20 @@ import com.android.tempelate.R
 import com.android.tempelate.adapter.CricketerAdapter
 import com.android.tempelate.databinding.ActivityParallelApiCallBinding
 import com.android.tempelate.model.User
-import com.android.tempelate.network.APICallHelperImp
 import com.android.tempelate.util.Status
-import com.android.tempelate.util.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
-import com.android.tempelate.network.RetrofitBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ParallelAPICallActivity : AppCompatActivity() {
 
     private var dataBinding: ActivityParallelApiCallBinding? = null
-    private var viewModel: ParallelAPICallViewModel?= null
     private var adapter: CricketerAdapter?= null
-
+    private val viewModel : ParallelAPICallViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_parallel_api_call)
-        initializeViewModel()
         initViews()
         registerObserver()
     }
@@ -72,9 +69,5 @@ class ParallelAPICallActivity : AppCompatActivity() {
     private fun setRecyclerData(data: List<User>) {
         adapter = CricketerAdapter(data)
         dataBinding?.rvUsers?.adapter = adapter
-    }
-
-    private fun initializeViewModel() {
-        viewModel = ViewModelProvider(this, ViewModelFactory(APICallHelperImp(RetrofitBuilder.apiService)))[ParallelAPICallViewModel::class.java]
     }
 }

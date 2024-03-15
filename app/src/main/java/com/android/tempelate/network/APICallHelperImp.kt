@@ -1,6 +1,8 @@
 package com.android.tempelate.network
 
-class APICallHelperImp(private val apiService: ApiService) : ApiCallHelper {
-    override suspend fun getCricketers() = apiService.getCricketers()
-    override suspend fun getFootballPlayers() = apiService.getFootballPlayers()
+import javax.inject.Inject
+
+class APICallHelperImp @Inject constructor(private val apiService: ApiService)  {
+     suspend fun getCricketers() = apiService.getCricketers()
+     suspend fun getFootballPlayers() = apiService.getFootballPlayers()
 }

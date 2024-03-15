@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.tempelate.model.User
 import com.android.tempelate.network.ApiCallHelper
+import com.android.tempelate.network.ApiService
 import com.android.tempelate.util.APIResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MultipleAPICallViewModel(private val apiCallHelper: ApiCallHelper) : ViewModel() {
+@HiltViewModel
+class MultipleAPICallViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
     val playersList = MutableLiveData<APIResult<List<User>>>()
 
     init {
@@ -19,8 +23,8 @@ class MultipleAPICallViewModel(private val apiCallHelper: ApiCallHelper) : ViewM
         viewModelScope.launch {
             playersList.postValue(APIResult.loading(null,"Loading"))
             try {
-                val apiResultCricketer = apiCallHelper.getCricketers()
-                val apiResultFootballer = apiCallHelper.getFootballPlayers()
+                val apiResultCricketer = apiService.getCricketers()
+                val apiResultFootballer = apiService.getFootballPlayers()
                 val apiAllPlayerResult = mutableListOf<User>()
                 apiAllPlayerResult.addAll(apiResultCricketer)
                 apiAllPlayerResult.addAll(apiResultFootballer)

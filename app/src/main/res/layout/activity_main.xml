@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity"
+        android:layout_margin="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_open_single_api"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/single_api_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_multi_single_api"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/multi_api_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/btn_open_single_api"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_multi_parallel_api"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/multi_api_call_parallel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_multi_single_api"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

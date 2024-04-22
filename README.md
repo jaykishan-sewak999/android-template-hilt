@@ -1,5 +1,4 @@
 # android-template-hilt
-Sure, I'd be happy to help you create a README.md file for your Android template. Here's a basic structure you can use:
 
 ---
 

@@ -20,7 +20,7 @@ class MultipleAPICallActivity : AppCompatActivity() {
 
     private var dataBinding: ActivityMultiApiCallBinding? = null
     private val viewModel : MultipleAPICallViewModel by viewModels()
-    var adapter: CricketerAdapter? = null
+    private var adapter: CricketerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,7 +42,7 @@ class MultipleAPICallActivity : AppCompatActivity() {
     }
 
     private fun registerObserver() {
-        viewModel?.playersList?.observe(this) {
+        viewModel.playersList.observe(this) {
             when (it.status) {
                 Status.LOADING -> {
                     dataBinding?.progressCircular?.visibility = View.VISIBLE

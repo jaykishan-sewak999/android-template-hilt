@@ -42,12 +42,13 @@ class ParallelAPICallActivity : AppCompatActivity() {
     }
 
     private fun registerObserver() {
-        viewModel?.playersList?.observe(this) {
+        viewModel.playersList.observe(this) {
             when (it.status) {
                 Status.LOADING -> {
                     dataBinding?.progressCircular?.visibility = View.VISIBLE
                     dataBinding?.rvUsers?.visibility = View.GONE
                 }
+
                 Status.ERROR -> {
                     dataBinding?.progressCircular?.visibility = View.GONE
                     dataBinding?.rvUsers?.visibility = View.GONE
@@ -57,6 +58,7 @@ class ParallelAPICallActivity : AppCompatActivity() {
                     } }
                     snack?.show()
                 }
+
                 Status.SUCCESS -> {
                     dataBinding?.progressCircular?.visibility = View.GONE
                     dataBinding?.rvUsers?.visibility = View.VISIBLE
